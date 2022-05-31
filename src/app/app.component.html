@@ -1,0 +1,13 @@
+<nav class="navbar tutoring-navbar" style="background-color: #e3f2fd;">
+  <div class="container-fluid">
+    <a routerLink="home" routerLinkActive="active" class="navbar-brand tutoring-navbar-item">Home</a>
+    <a routerLink="offers" routerLinkActive="active" class="navbar-brand tutoring-navbar-item">Nachhilfeangebote</a>
+    <a *ngIf="isLoggedIn()" routerLink="admin" routerLinkActive="active" class="navbar-brand tutoring-navbar-item">Administration</a>
+    <a *ngIf="isLoggedIn()" routerLink="profile" routerLinkActive="active" class="navbar-brand tutoring-navbar-item">Profil</a>
+    <a routerLink="login" routerLinkActive="active"
+       class="navbar-brand tutoring-navbar-item">{{getLoginLabel()}}</a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+    </div>
+  </div>
+</nav>
+<router-outlet></router-outlet>
