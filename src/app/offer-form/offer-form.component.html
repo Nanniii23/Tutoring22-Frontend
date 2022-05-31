@@ -1,0 +1,35 @@
+<div class="tutoring-login-form">
+<h1>Formular Nachilfeangebot</h1>
+<form class="ui large form" [formGroup]="offerForm"
+      (ngSubmit)="submitForm()">
+  <input type="hidden" formControlName="id">
+  <div class="field">
+    <label>Lehrveranstaltung</label>
+    <input formControlName="subject">
+    <div *ngIf="errors['subject']" class="ui negative message"> {{
+      errors['subject'] }} </div>
+  </div>
+  <div class="field">
+    <label>Beschreibung</label>
+    <input formControlName="description">
+  </div>
+  <div class="field">
+    <label>Termine</label>
+    <div formArrayName="appointments">
+      <div class="fields" *ngFor="let control of appointments?.controls; index as i; last as l"
+           [formGroupName]="i">
+        <input type="hidden" formControlName="id">
+        <div class="nine wide field">
+         <input formControlName="date" type="datetime-local">
+        </div>
+        <div class="one wide field" *ngIf="l">
+          <button (click)="addDateControl()" class="ui large button" type="button">+</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <button type="submit" class="ui button"
+          [disabled]="offerForm.invalid">Speichern</button>
+</form>
+</div>

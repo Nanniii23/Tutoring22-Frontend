@@ -1,0 +1,41 @@
+<div class="offer-detail-view">
+<div *ngIf="offer">
+  <h2>{{ offer.subject }}</h2>
+ <!-- <h4>Nachhilfegebende/r: {{ offer?.user?.firstName }} {{ offer?.user?.lastName }}</h4>-->
+  <p>{{ offer.description }}</p>
+</div>
+<div>
+<button style="margin: 30px;" [routerLink]="'/offers'" class="btn btn-light">Zurück zur
+  Übersicht</button>
+
+<a style="margin: 30px;" *ngIf="authService.isLoggedIn()" class="btn btn-secondary"
+   [routerLink]="['../../admin', offer?.id]">
+  <i class="write icon"></i> Nachhilfeangebot bearbeiten
+</a>
+
+<button style="margin: 30px;"  *ngIf="authService.isLoggedIn()" class="ui tiny red labeled icon button" (click)="removeOffer()">
+  <i class="remove icon"></i> Nachhilfeangebot löschen
+</button>
+
+
+<div class="py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4" *ngFor="let appointment of offer?.appointments; last as l">
+        <div class="card tutoring-card" *ngIf="!appointment.user_id">
+          <div class="card-block">
+            <h4 class="card-title">{{appointment.date}}</h4>
+            <br>
+            <a class="btn btn-info tutoring-btn" (click)="bookAppointment(appointment)">Termin buchen</a>
+          </div>
+        </div>
+      </div>
+    </div><br>
+  </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+<script src="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-alpha.6.min.js"></script>
+
+</div>
+</div>
