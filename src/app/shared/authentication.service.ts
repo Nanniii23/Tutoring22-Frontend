@@ -24,6 +24,10 @@ export class AuthenticationService {
     return Number.parseInt(<string>sessionStorage.getItem("userId"));
   }
 
+  public getCurrentUserRole() {
+    return Number.parseInt(<string>sessionStorage.getItem("isTeacher"));
+  }
+
   public setSessionStorage(token: string) {
     console.log("Storing token");
     console.log(jwt_decode(token));
@@ -55,6 +59,7 @@ export class AuthenticationService {
       return false;
     }
   }
+
   isLoggedOut() {
     return !this.isLoggedIn();
   }

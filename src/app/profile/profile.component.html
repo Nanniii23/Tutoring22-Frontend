@@ -8,25 +8,25 @@
 
         <div class="text-center">
         </div>
-
-        <div class="text-center mt-3">
-          <h3 class="mt-2 mb-0">Alexender Schidmt</h3>
-          <span>UI/UX Designer</span>
-
-          <div class="px-4 mt-1">
-            <p class="fonts">blabla </p>
       </div>
           <div>
             <br>
-            <h3>Meine gebuchten Nachhilfe-Termine</h3>
+            <h3 style="text-align: center;">Meine gebuchten Nachhilfe-Termine</h3>
             <div class="py-5">
               <div class="container">
                 <div class="row">
-               <!--   <div class="col-md-4" *ngFor="let appointment of offer?.appointments; last as l">-->
+                  <div *ngIf="offer">
+                    <h2>{{ offer.subject }}</h2>
+                    <!-- <h4>Nachhilfegebende/r: {{ offer?.user?.firstName }} {{ offer?.user?.lastName }}</h4>-->
+                    <p>{{ offer.description }}</p>
+                  </div>
+                  <div class="col-md-4" *ngFor="let appointment of offer?.appointments; last as l">
+                    <div class="card tutoring-card" *ngIf="appointment.user_id == getCurrentUserId()">
                       <div class="card-block">
-                      <!--  <h4 class="card-title">{{appointment.date}}</h4>-->
+                        <h4 class="card-title">{{appointment.date}}</h4>
                         <br>
-                      </div>
+                    </div>
+                  </div>
                   </div>
                 </div><br>
               </div>
@@ -38,3 +38,4 @@
   </div>
 
 </div>
+
